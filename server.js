@@ -13,9 +13,8 @@ app.use(bodyParser.json());
 
 // =============== DATABASE CONNECTION =====================
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:3030/ecommerce_github`);
+mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/ecommerce_github`,  { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
-mongoose.set('useNewUrlParser', true);
 
 // =============== ROUTES ==============================
 const userRoutes = require('./routes/userRoutes');
