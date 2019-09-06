@@ -8,15 +8,15 @@ import Axios from 'axios';
 class NavBar extends React.Component {
 
   state = {
-    /*length: localStorage.length,
+    length: localStorage.length,
     token: localStorage.getItem('token'),
     itemtotal: localStorage.getItem('ItemTotal'),
-    paid: localStorage.getItem('Paid')*/
-    length: 0,
+    paid: localStorage.getItem('Paid')
+    /*length: 0,
     token: '',
     itemtotal: '',
     paid: '',
-    orderId: ''
+    orderId: ''*/
   }
 
   handleClick = e => {
@@ -26,17 +26,17 @@ class NavBar extends React.Component {
 
   findOrder = async orderid => {
     try {
-      //let orderid = localStorage.getItem('OrderId');
-      let orderid = this.state.orderId;
+      let orderid = localStorage.getItem('OrderId');
+      //let orderid = this.state.orderId;
       const res = await Axios.get(`http://localhost:3030/admin/orders/id/${orderid}`);
       if (res.data.length !== 0 && (res.data.paidStatus === "true" || orderid !== '')) {
         //console.log(res);
-        /*localStorage.setItem('CartTotal', 0);
+        localStorage.setItem('CartTotal', 0);
         localStorage.setItem('ItemTotal', 0);
         localStorage.setItem('Paid', 'false');
         localStorage.setItem('PaymentTotal', 0);
         localStorage.setItem('Shipping', 0);
-        localStorage.setItem('OrderId', "");*/
+        localStorage.setItem('OrderId', "");
         this.props.history.push('/cart');
       } else {
         this.props.history.push('/cart');
@@ -50,7 +50,7 @@ class NavBar extends React.Component {
   render() {    
     return (
       <div>
-        {this.state.token === "undefined" || this.state.token === "" /*|| localStorage.length === 0 || localStorage.email === "undefined" || localStorage.id === "undefined" || localStorage.id === ""*/ ? 
+        {this.state.token === "undefined" || this.state.token === "" || localStorage.length === 0 || localStorage.email === "undefined" || localStorage.id === "undefined" || localStorage.id === "" ? 
         <nav id="nav-bar">
           <h1> <NavLink exact to="/"> Sauce Stop </NavLink> </h1>
           <ul>
