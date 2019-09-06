@@ -33,7 +33,7 @@ export default class App extends Component {
 
   getProducts = async () => {
     try {
-      let response = await Axios.get(`http://localhost:3030/products`);
+      let response = await Axios.get(`/products`);
       //console.log(response);
       this.setState({products: response.data});
     }
@@ -46,7 +46,7 @@ export default class App extends Component {
     try {
       let userId = localStorage.getItem('id');
       //let userId = this.state.userId;
-      let response = await Axios.get(`http://localhost:3030/cart/${userId}`);
+      let response = await Axios.get(`/cart/${userId}`);
       this.setState({cartData: response.data});
       console.log(this.state.cartData);
     }
@@ -59,11 +59,11 @@ export default class App extends Component {
     try {
       let userId = localStorage.getItem('id');
       //let userId = this.state.userId;
-      let response = await Axios.get(`http://localhost:3030/cart/${userId}`);
+      let response = await Axios.get(`/cart/${userId}`);
       this.setState({cartData: response.data});
       let {cartData} = this.state, tempCart = [];
       for (var i=0; i<cartData.length; i++) {
-        const resProduct = await Axios.get(`http://localhost:3030/products/${cartData[i].productId}`);
+        const resProduct = await Axios.get(`/products/${cartData[i].productId}`);
         tempCart.push(resProduct.data);
       }
       this.setState({cartProducts: tempCart});
