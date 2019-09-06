@@ -42,7 +42,7 @@ app.use('/', cartRoutes);
 app.use('/', orderRoutes);
 
 // =============== START SERVER =====================
-const port = process.env.port || 3030;
+const port = process.env.PORT || 5000;
 app.listen(port, () => 
     console.log(`server listening on port ${port}`
 ));
