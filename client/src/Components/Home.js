@@ -8,7 +8,7 @@ class Home extends Component {
 	state = {
 		message: '',
 		sku: '',
-		matched: [].
+		matched: [],
 		products: []
 	}
 
