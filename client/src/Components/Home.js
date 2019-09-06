@@ -39,11 +39,11 @@ class Home extends Component {
 
 	render () {
 		
-		let {matched, products} = this.state;
+		let {matched} = this.state;
 		let display;
 
 		if (matched.length === 0 && this.props.products !== undefined) {
-			display = products.map((obj, i) => {
+			display = this.props.products.map((obj, i) => {
 				return (
 					<div className="product-list" key={i}>
 						<img className="product-images" src={obj.photoURL} alt=""/><br />

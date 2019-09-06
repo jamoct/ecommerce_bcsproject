@@ -6,15 +6,6 @@ const admin = require('../models/AdminModel'),
 
 class AdminController {
 
-	async showHome (req, res) {
-		try {
-			res.send('home page');
-		}
-		catch(e){
-			res.send({e});
-		}
-	}
-
 	async showAdmin (req, res) {
 		try {
 			const allAdmins = await admin.find({});

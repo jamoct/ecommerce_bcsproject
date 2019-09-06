@@ -28,7 +28,7 @@ export default class AddtoCart extends Component {
 	}
 
 	findProduct = (userId, productId) => {
-		Axios.get(`http://localhost:3030/cart/${userId}/${productId}`)
+		Axios.get(`/cart/${userId}/${productId}`)
 		.then((res) => {
 			console.log(res);
 			if (!res.data.found) {
@@ -38,7 +38,7 @@ export default class AddtoCart extends Component {
 			}
 		})
 		.catch((error) => {
-			this.setState({message:'Please enter the SKU.'});
+			console.log(error);
 		})
 	}
 
@@ -46,7 +46,7 @@ export default class AddtoCart extends Component {
 		let {userId, productId, orderedquantity, SKU, price, cost, paidStatus} = this.state;
 		try {
 			this.props.checkClicked(this.state.isClicked);
-			const res = await Axios.post(`http://localhost:3030/cart/add`, {
+			const res = await Axios.post(`/cart/add`, {
 				userId:userId,
 				productId:productId, 
 				orderedquantity:orderedquantity, 

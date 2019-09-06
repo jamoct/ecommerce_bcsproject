@@ -55,12 +55,12 @@ export default class ShowProducts extends Component {
 
 	render () {
 		
-		let {matched, isClicked, products} = this.state;
+		let {matched, isClicked} = this.state;
 		let display;
 		let info = '';
 
 		if (matched.length === 0 && products.length >= 1) {
-			display = products.map((obj, i) => {
+			display = this.props.products.map((obj, i) => {
 				return (
 					<div className="productCard" style={style.productCard} key={i}>
 						<DeleteProduct 
