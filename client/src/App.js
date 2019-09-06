@@ -34,7 +34,7 @@ export default class App extends Component {
   getProducts = async () => {
     try {
       let response = await Axios.get(`/products`);
-      //console.log(response);
+      console.log(response);
       this.setState({products: response.data});
     }
     catch(e) {
