@@ -14,12 +14,7 @@ export default class ShowProducts extends Component {
 		sku: '',
 		matched: [],
 		isClicked: false,
-		isAdmin: this.props.isAdmin,
-		products: []
-	}
-
-	componentDidMount () {
-		this.setState({products: this.props.products});
+		isAdmin: this.props.isAdmin
 	}
 
 	handleChange = e => {
@@ -139,7 +134,7 @@ export default class ShowProducts extends Component {
 		}
 
 		return (
-			<div>
+			<div style={{backgroundColor: "#f0f0f0"}}>
 				<div id="catalog">
 					<h2>Product Catalog</h2>
 					<form onSubmit={this.handleSubmit}>

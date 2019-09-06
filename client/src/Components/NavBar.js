@@ -11,23 +11,19 @@ class NavBar extends React.Component {
     length: localStorage.length,
     token: localStorage.getItem('token'),
     itemtotal: localStorage.getItem('ItemTotal'),
-    paid: localStorage.getItem('Paid')
-    /*length: 0,
-    token: '',
-    itemtotal: '',
-    paid: '',
-    orderId: ''*/
+    paid: localStorage.getItem('Paid'),
+    isLoggedInAdmin: false
   }
 
   handleClick = e => {
     localStorage.clear();
     this.props.history.push('/');
+    //this.props.checkAdminLoggedIn(this.state.isLoggedInAdmin);
   }
 
   findOrder = async orderid => {
     try {
       let orderid = localStorage.getItem('OrderId');
-      //let orderid = this.state.orderId;
       const res = await Axios.get(`/admin/orders/id/${orderid}`);
       if (res.data.length !== 0 && (res.data.paidStatus === "true" || orderid !== '')) {
         //console.log(res);
@@ -48,12 +44,18 @@ class NavBar extends React.Component {
   }
 
   render() {    
+  
     return (
       <div>
-        {this.state.token === "undefined" || this.state.token === "" || localStorage.length === 0 || localStorage.email === "undefined" || localStorage.id === "undefined" || localStorage.id === "" ? 
+        {localStorage.length === 0 || this.state.token === "undefined" || localStorage.email === "undefined" || localStorage.id === "undefined" || localStorage.id === "" ? 
         <nav id="nav-bar">
           <h1> <NavLink exact to="/"> Sauce Stop </NavLink> </h1>
           <ul>
+            <li><a href="#header">Home</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#sauces">Sauces</a></li>
+            <li><a href="#contact">Contact Us</a></li>
             <li> <NavLink exact to="/admin/login"><FontAwesomeIcon icon={faSignInAlt} size="lg" /> Admin Log in </NavLink> </li>
           </ul>
         </nav> :

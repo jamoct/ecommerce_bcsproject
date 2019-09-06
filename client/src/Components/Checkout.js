@@ -10,7 +10,7 @@ const PAYMENT_SERVER_URL = "/payment";
 export default class Checkout extends Component {
 
 	state = {
-		message: '',
+		message: 'Payment successful. You will now be redirected to the Order Summary page.',
 		cartSubtotal: localStorage.getItem('CartTotal'),
 		shippingFee: localStorage.getItem('Shipping'),
 		paymentTotal: localStorage.getItem('PaymentTotal'),
@@ -34,7 +34,7 @@ export default class Checkout extends Component {
 					amount: this.fromEuroToCent(this.state.paymentTotal)
 				})
 			//console.log(response);
-			this.setState({charge: true, message: 'Payment successful.'});
+			this.setState({charge: true, message: 'Payment successful. You will now be redirected to the Order Summary page.'});
 			localStorage.setItem('Paid', true);
 			await Axios.post(`/admin/orders/update`, {
 				_id: localStorage.getItem('OrderId'),
@@ -142,7 +142,9 @@ export default class Checkout extends Component {
 											/>
 										</div>
 										<br/>
-										{this.state.message}
+										<div style={{margin: "15px 0", maxWidth: "75%"}}>
+											{this.state.message}
+										</div>
 									</div>
 									: <div> </div>
 								}

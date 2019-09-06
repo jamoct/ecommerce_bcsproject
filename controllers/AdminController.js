@@ -38,7 +38,7 @@ class AdminController {
 			console.log('hash =', encrypted);
 			const newAdmin = {email, password: encrypted};
 			const createAdmin = await admin.create(newAdmin);
-			res.send({ok:true, message: 'Admin successfully registered. You will now be redirected to the login page.', createAdmin})
+			res.send({ok:true, message: 'Admin successfully registered.', createAdmin})
 		}
 		catch(e){
 			res.send({e});

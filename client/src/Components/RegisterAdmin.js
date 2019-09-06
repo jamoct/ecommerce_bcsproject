@@ -24,7 +24,7 @@ class RegisterAdmin extends Component {
 		let {email, password, password2, adminAccess} = this.state;
 		e.preventDefault();
 		try {
-			if (adminAccess !== "1234") return this.setState({message: 'You need to have a valid Admin Access ID to create new admins.'});
+			if (adminAccess !== "1234") return alert('You need to have a valid Admin Access ID.');
 			const response = await Axios.post(`/admin/register`, {
 				email: email,
 				password: password,
@@ -64,8 +64,8 @@ class RegisterAdmin extends Component {
 							style={{border: "none", backgroundColor: "transparent", cursor: "pointer"}}
 							onClick={this.handleClose}><FontAwesomeIcon icon={faWindowClose} size="lg"/></button>
 						</div>
-						<h1 style={{margin: "10px auto 0", textAlign: "center"}}>Sign Up</h1>
-						<h4 style={{margin: "10px auto", textAlign: "center"}}>Please enter your credentials.</h4>
+						<h1 style={{textAlign: "center"}}>Sign Up</h1>
+						<h4 style={{textAlign: "center"}}>Please enter your credentials.</h4>
 						<div style={{textAlign: "center"}}>
 							<form onSubmit={this.handleSubmit}>
 								<input
@@ -99,7 +99,7 @@ class RegisterAdmin extends Component {
 									name="adminAccess"
 									value={this.state.adminAccess}
 									style={style.forminputs}
-								/>
+								/><br />
 								<button className="button">Register</button>
 							</form>
 							<p onClick={this.handleLogin} style={style.action}> Already a user? Login </p>
@@ -124,6 +124,6 @@ const style = {
 	action: {
 		textDecoration: "underline",
 		cursor: "pointer",
-		margin: "10px"
+		margin: "5px"
 	}
 }

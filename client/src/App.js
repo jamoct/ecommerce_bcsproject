@@ -10,6 +10,9 @@ import UpdateProduct from './Components/UpdateProduct';
 import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import OrderSummary from './Components/OrderSummary';
+import NavBar from './Components/NavBar';
+import Footer from './Components/Footer';
+import MyOrders from './Components/MyOrders';
 import Axios from 'axios';
 
 export default class App extends Component {
@@ -19,22 +22,19 @@ export default class App extends Component {
     cartProducts: [],
     cartData: [],
     isLoggedInAdmin: false,
-    isLoggedInUser: false,
-    userId: ''
+    isLoggedInUser: false
   }
 
   componentDidMount () {
     this.getProducts();
     this.getCartData();
     this.getCartProducts();
-    let id = localStorage.getItem('id');
-    if (id === undefined) return localStorage.clear();
   }
 
   getProducts = async () => {
     try {
       let response = await Axios.get(`/products`);
-      console.log(response);
+      //console.log(response);
       this.setState({products: response.data});
     }
     catch(e) {
@@ -45,7 +45,6 @@ export default class App extends Component {
   getCartData = async () => {
     try {
       let userId = localStorage.getItem('id');
-      //let userId = this.state.userId;
       let response = await Axios.get(`/cart/${userId}`);
       this.setState({cartData: response.data});
       console.log(this.state.cartData);
@@ -58,7 +57,6 @@ export default class App extends Component {
   getCartProducts = async () => {
     try {
       let userId = localStorage.getItem('id');
-      //let userId = this.state.userId;
       let response = await Axios.get(`/cart/${userId}`);
       this.setState({cartData: response.data});
       let {cartData} = this.state, tempCart = [];
@@ -78,10 +76,20 @@ export default class App extends Component {
     this.setState({isLoggedInAdmin: log});
   }
 
+  removeUndefined = () => {
+    let id = localStorage.getItem('id');
+    if (id === undefined) return localStorage.clear();
+  }
+
   render () {
      return (
       <Router>
         <div>
+          {this.removeUndefined()}
+          <NavBar 
+            isLoggedInAdmin={this.state.isLoggedInAdmin}
+            checkAdminLoggedIn={this.checkAdminLoggedIn}
+          />
           <Route exact path="/" render={
             props => <Home {...props} products={this.state.products}/>
             //() => {this.state.isLoggedInAdmin ? (<Redirect to="/admin/dashboard"/>) : (<Home/>)}
@@ -102,6 +110,7 @@ export default class App extends Component {
           <Route path="/admin/dashboard/update-product" render={
             props => <UpdateProduct {...props} getProducts={this.getProducts}/>
           }/>
+          <Route path="/orders" component={MyOrders}/>
           <Route path="/cart" render={
             props => <Cart {...props} 
               cartProducts={this.state.cartProducts}
@@ -116,6 +125,7 @@ export default class App extends Component {
               cartData={this.state.cartData}/>
           }/>
           <Route path="/review" component={OrderSummary}/>
+          <Footer />
         </div>
       </Router>
     );

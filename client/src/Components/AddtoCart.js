@@ -38,7 +38,7 @@ export default class AddtoCart extends Component {
 			}
 		})
 		.catch((error) => {
-			console.log(error);
+			this.setState({message:'Please enter the SKU.'});
 		})
 	}
 

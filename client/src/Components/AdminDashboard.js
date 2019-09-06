@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {withRouter} from 'react-router-dom';
+import {withRouter, NavLink} from 'react-router-dom';
 import Axios from 'axios';
 import ShowProducts from './ShowProducts';
 import NavBar from './NavBar';
@@ -17,7 +17,7 @@ class AdminDashboard extends Component {
 	}
 
 	verifyToken = async e => {
-		const token = localStorage.getItem('token');
+		const token = JSON.parse(localStorage.getItem('token'));
 		try {
 			const response = await Axios.post(`/verifytoken`, {token: token});
 			return !response.data.ok ? this.props.history.push('/admin/login') : null;
@@ -28,7 +28,7 @@ class AdminDashboard extends Component {
 	}
 
 	getAdminId = async e => {
-		const email = localStorage.getItem('email');
+		const email = JSON.parse(localStorage.getItem('email'));
 		try {
 			const response = await Axios.post(`/admin/check`, {email: email});
 			if (!response.data.ok) {
@@ -46,8 +46,16 @@ class AdminDashboard extends Component {
 
 	render () {
 		return (
-			<div style={{backgroundColor: "#f0f0f0"}}>
+			<div>
 				<NavBar />
+				<div style={style.content}>
+					<div id="grid-cartmenu">
+						<div style={{backgroundColor: "#01768b"}}><NavLink exact to="/admin/dashboard" style={{color: "white"}}>Product Catalog</NavLink></div>
+						<div><NavLink to="/orders" style={{color: 'black', margin: '0 30px'}}>All Orders</NavLink></div>
+						<div><NavLink to="/adminpanel" style={{color: 'black', margin: '0 30px'}}>Admin Panel</NavLink></div>
+					</div>
+					<hr/>
+				</div>
 				<ShowProducts 
 					products={this.props.products}
 					getProducts={this.props.getProducts}
@@ -60,3 +68,10 @@ class AdminDashboard extends Component {
 }
 
 export default withRouter(AdminDashboard);
+
+const style = {
+	content: {
+		maxWidth: "1000px",
+		margin: "40px auto 0"
+	}
+};
