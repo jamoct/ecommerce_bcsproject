@@ -1,5 +1,5 @@
 const admin = require('../models/AdminModel'),
-	bcrypt = require('bcrypt'),
+	bcrypt = require('bcryptjs'),
 	jwt = require('jsonwebtoken'),
 	config = require('../config'),
 	saltRounds = 10;
