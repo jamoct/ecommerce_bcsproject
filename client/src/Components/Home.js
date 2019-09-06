@@ -8,7 +8,12 @@ class Home extends Component {
 	state = {
 		message: '',
 		sku: '',
-		matched: []
+		matched: [].
+		products: []
+	}
+
+	componentDidMount () {
+		this.setState({products: this.props.products});
 	}
 
 	handleChange = e => {
@@ -34,11 +39,11 @@ class Home extends Component {
 
 	render () {
 		
-		let {matched} = this.state;
+		let {matched, products} = this.state;
 		let display;
 
 		if (matched.length === 0 && this.props.products !== undefined) {
-			display = this.props.products.map((obj, i) => {
+			display = products.map((obj, i) => {
 				return (
 					<div className="product-list" key={i}>
 						<img className="product-images" src={obj.photoURL} alt=""/><br />
