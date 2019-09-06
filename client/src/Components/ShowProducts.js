@@ -59,7 +59,7 @@ export default class ShowProducts extends Component {
 		let display;
 		let info = '';
 
-		if (matched.length === 0 && products.length >= 1) {
+		if (matched.length === 0 && this.props.products.length >= 1) {
 			display = this.props.products.map((obj, i) => {
 				return (
 					<div className="productCard" style={style.productCard} key={i}>
