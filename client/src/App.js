@@ -19,15 +19,16 @@ export default class App extends Component {
     cartProducts: [],
     cartData: [],
     isLoggedInAdmin: false,
-    isLoggedInUser: false
+    isLoggedInUser: false,
+    userId: ''
   }
 
   componentDidMount () {
     this.getProducts();
     this.getCartData();
     this.getCartProducts();
-    let id = localStorage.getItem('id');
-    if (id === undefined) return localStorage.clear();
+    //let id = localStorage.getItem('id');
+    //if (id === undefined) return localStorage.clear();
   }
 
   getProducts = async () => {
@@ -43,7 +44,8 @@ export default class App extends Component {
 
   getCartData = async () => {
     try {
-      let userId = localStorage.getItem('id');
+      //let userId = localStorage.getItem('id');
+      let userId = this.state.userId;
       let response = await Axios.get(`http://localhost:3030/cart/${userId}`);
       this.setState({cartData: response.data});
       console.log(this.state.cartData);
@@ -55,7 +57,8 @@ export default class App extends Component {
 
   getCartProducts = async () => {
     try {
-      let userId = localStorage.getItem('id');
+      //let userId = localStorage.getItem('id');
+      let userId = this.state.userId;
       let response = await Axios.get(`http://localhost:3030/cart/${userId}`);
       this.setState({cartData: response.data});
       let {cartData} = this.state, tempCart = [];
