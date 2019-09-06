@@ -12,22 +12,6 @@ const mongoose = require('mongoose');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-// to make the project production ready
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-
-  const path = require('path');
-  app.get('*', (req,res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
-
-}
-
-// =============== DATABASE CONNECTION =====================
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || `mongodb://heroku_hcjfblpk:t9h6166a2t675uk69tm76albkg@ds317808.mlab.com:17808/heroku_hcjfblpk`,  { useNewUrlParser: true });
-mongoose.set('useCreateIndex', true);
-
 // =============== ROUTES ==============================
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
@@ -40,6 +24,22 @@ app.use('/', userRoutes);
 app.use('/', productRoutes);
 app.use('/', cartRoutes);
 app.use('/', orderRoutes);
+
+// =============== DATABASE CONNECTION =====================
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || `mongodb://heroku_hcjfblpk:t9h6166a2t675uk69tm76albkg@ds317808.mlab.com:17808/heroku_hcjfblpk`,  { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
+
+// to make the project production ready
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  const path = require('path');
+  app.get('/', (req,res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+
+}
 
 // =============== START SERVER =====================
 const port = process.env.PORT || 5000;
