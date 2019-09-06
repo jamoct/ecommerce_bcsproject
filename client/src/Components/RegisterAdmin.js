@@ -25,7 +25,7 @@ class RegisterAdmin extends Component {
 		e.preventDefault();
 		try {
 			if (adminAccess !== "1234") return this.setState({message: 'You need to have a valid Admin Access ID to create new admins.'});
-			const response = await Axios.post(`http://localhost:3030/admin/register`, {
+			const response = await Axios.post(`/admin/register`, {
 				email: email,
 				password: password,
 				password2: password2

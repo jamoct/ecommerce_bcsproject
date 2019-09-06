@@ -28,7 +28,7 @@ class LoginAdmin extends Component {
 		let {email, password} = this.state;
 		e.preventDefault();
 		try {
-			const response = await Axios.post(`http://localhost:3030/admin/login`, {
+			const response = await Axios.post(`/admin/login`, {
 				email: email,
 				password: password
 			})
