@@ -13,7 +13,7 @@ export default class RemoveFromCart extends Component {
 	handleClick = async e => {
 		e.preventDefault();
 		try {
-			await Axios.post(`http://localhost:3030/cart/remove`, {
+			await Axios.post(`/cart/remove`, {
 				productId: this.props.productId
 			})
 			this.props.getCartProducts();

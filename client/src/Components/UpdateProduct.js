@@ -27,7 +27,7 @@ class UpdateProduct extends Component {
 		let {name, price, photoURL, quantity, SKU, desc} = this.state;
 		e.preventDefault();
 		try {
-			const res = await Axios.post(`http://localhost:3030/admin/products/update`, {
+			const res = await Axios.post(`/admin/products/update`, {
 				_id: this.props.id,
 				newName: name,
 				newPrice: price,

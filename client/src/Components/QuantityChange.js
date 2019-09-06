@@ -21,7 +21,7 @@ export default class QuantityChange extends Component {
 	changeQty = async (e) => {
 		try {
 			let {qty, price, productId} = this.state;
-			Axios.post(`http://localhost:3030/cart/update`, {
+			Axios.post(`/cart/update`, {
 				productId: productId,
 				newQty: qty,
 				price: price

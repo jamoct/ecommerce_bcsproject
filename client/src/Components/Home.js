@@ -27,7 +27,7 @@ class Home extends Component {
 	}
 
 	findProduct = sku => {
-		Axios.get(`http://localhost:3030/admin/products/${sku}`)
+		Axios.get(`/admin/products/${sku}`)
 		.then((res) => {
 			console.log(res);
 			this.setState({matched: [res.data]});

@@ -34,8 +34,8 @@ class LoginAdmin extends Component {
 			})
 			console.log(response);
 			if (response.data.token !== undefined) {
-				localStorage.setItem('token', JSON.stringify(response.data.token));
-				localStorage.setItem('email', JSON.stringify(response.data.email));
+				localStorage.setItem('token', response.data.token);
+				localStorage.setItem('email', response.data.email);
 				this.setState({message: response.data.message, email: '', password: '', isLoggedin: true});
 				setTimeout(()=> {this.props.history.push('/admin/dashboard')}, 3000);
 			} else {

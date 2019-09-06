@@ -17,9 +17,9 @@ class AdminDashboard extends Component {
 	}
 
 	verifyToken = async e => {
-		const token = JSON.parse(localStorage.getItem('token'));
+		const token = localStorage.getItem('token');
 		try {
-			const response = await Axios.post(`http://localhost:3030/verifytoken`, {token: token});
+			const response = await Axios.post(`/verifytoken`, {token: token});
 			return !response.data.ok ? this.props.history.push('/admin/login') : null;
 		}
 		catch(e) {
@@ -28,9 +28,9 @@ class AdminDashboard extends Component {
 	}
 
 	getAdminId = async e => {
-		const email = JSON.parse(localStorage.getItem('email'));
+		const email = localStorage.getItem('email');
 		try {
-			const response = await Axios.post(`http://localhost:3030/admin/check`, {email: email});
+			const response = await Axios.post(`/admin/check`, {email: email});
 			if (!response.data.ok) {
 				this.props.history.push('/');
 			} else {

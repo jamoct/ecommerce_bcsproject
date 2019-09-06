@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 
 const STRIPE_PUBLISHABLE = 'pk_test_UP0UFXQbnPAN73PL6hdYzIIS00BIVPjpDV';
-const PAYMENT_SERVER_URL = "http://localhost:3030/payment";
+const PAYMENT_SERVER_URL = "/payment";
 
 export default class Checkout extends Component {
 
@@ -36,7 +36,7 @@ export default class Checkout extends Component {
 			//console.log(response);
 			this.setState({charge: true, message: 'Payment successful.'});
 			localStorage.setItem('Paid', true);
-			await Axios.post(`http://localhost:3030/admin/orders/update`, {
+			await Axios.post(`/admin/orders/update`, {
 				_id: localStorage.getItem('OrderId'),
 				newcurrentStatus: 'New order - processing',
 				newpaidStatus: 'true'
@@ -53,18 +53,18 @@ export default class Checkout extends Component {
 
 	updateStock = async () => {
 		try {
-			await Axios.post(`http://localhost:3030/cart/update`, {
+			await Axios.post(`/cart/update`, {
 				userId: localStorage.getItem('id'),
 				newpaidStatus: 'true'
 			})
 			//console.log(resCart);
 			let {orderId} = this.state; 
-			const resGetOrders = await Axios.get(`http://localhost:3030/admin/orders/id/${orderId}`);
+			const resGetOrders = await Axios.get(`/admin/orders/id/${orderId}`);
 			let orderedProducts = resGetOrders.data[0].products;
 			for (var i=0; i<orderedProducts.length; i++) {
-				const response = await Axios.get(`http://localhost:3030/products/${orderedProducts[i].productId}`);
+				const response = await Axios.get(`/products/${orderedProducts[i].productId}`);
 				let newStock = response.data.quantity - orderedProducts[i].orderedquantity;
-				await Axios.post(`http://localhost:3030/admin/products/update`, {
+				await Axios.post(`/admin/products/update`, {
 					_id: orderedProducts[i].productId,
 					newQuantity: newStock
 				})

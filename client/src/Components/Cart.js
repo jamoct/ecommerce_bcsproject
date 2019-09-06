@@ -33,7 +33,7 @@ class Cart extends Component {
 	handleClear = async e => {
 		let {userId} = this.state;
 		try {
-			const res = await Axios.post(`http://localhost:3030/cart/clear`, {
+			const res = await Axios.post(`/cart/clear`, {
 				userId: userId
 			})
 			console.log(res);

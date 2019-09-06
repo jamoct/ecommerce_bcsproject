@@ -28,7 +28,7 @@ export default class ShowProducts extends Component {
 	}
 
 	findProduct = sku => {
-		Axios.get(`http://localhost:3030/admin/products/${sku}`)
+		Axios.get(`/admin/products/${sku}`)
 		.then((res) => {
 			console.log(res);
 			if (res.data !== "") {

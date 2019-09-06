@@ -12,7 +12,7 @@ class DeleteProduct extends Component {
 
 	handleDelete = async e => {
 		try {
-			const res = await Axios.post(`http://localhost:3030/admin/products/delete`, {
+			const res = await Axios.post(`/admin/products/delete`, {
 				_id: this.props.id
 			})
 			console.log(res);

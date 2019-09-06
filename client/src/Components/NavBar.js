@@ -28,7 +28,7 @@ class NavBar extends React.Component {
     try {
       let orderid = localStorage.getItem('OrderId');
       //let orderid = this.state.orderId;
-      const res = await Axios.get(`http://localhost:3030/admin/orders/id/${orderid}`);
+      const res = await Axios.get(`/admin/orders/id/${orderid}`);
       if (res.data.length !== 0 && (res.data.paidStatus === "true" || orderid !== '')) {
         //console.log(res);
         localStorage.setItem('CartTotal', 0);

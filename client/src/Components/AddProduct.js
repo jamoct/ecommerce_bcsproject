@@ -24,7 +24,7 @@ class AddProduct extends Component {
 		let {name, price, photoURL, quantity, SKU, desc} = this.state;
 		e.preventDefault();
 		try {
-			const res = await Axios.post(`http://localhost:3030/admin/products/add`, {
+			const res = await Axios.post(`/admin/products/add`, {
 				name: name,
 				price: price,
 				photoURL: photoURL,

@@ -20,11 +20,11 @@ export default class OrderSummary extends Component {
 	findOrder = async orderid => {
 		try {
 			let {name, orderId} = this.state;
-			const res = await Axios.get(`http://localhost:3030/admin/orders/id/${orderid}`);
+			const res = await Axios.get(`/admin/orders/id/${orderid}`);
 			//console.log(res);
 			if (res.data[0].length !== 0 && res.data[0].paidStatus === "true") {
 				// email will be sent to joyce@barcelonacodeschool.com
-				const response = await Axios.post(`http://localhost:3030/sendemail`, {
+				const response = await Axios.post(`/sendemail`, {
 					name: name,
 					subject: "Your Sauce Stop Order #" + orderId,
 					header: "Thanks for shopping with us!",
@@ -54,7 +54,7 @@ export default class OrderSummary extends Component {
 				this.props.history.push('/admin/dashboard');
 			} 
 			if (this.state.itemTotal === 0 || this.state.paid === "true") {
-				await Axios.post(`http://localhost:3030/cart/clear`, {
+				await Axios.post(`/cart/clear`, {
 					userId: userId
 				})
 				//console.log(res);

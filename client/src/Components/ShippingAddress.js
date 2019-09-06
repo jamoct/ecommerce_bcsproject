@@ -29,7 +29,7 @@ class ShippingAddress extends Component {
 		let {firstName, lastName, addressline1, addressline2, city, country, state, postal_code, contactNumber, notes} = this.state;
 		e.preventDefault();
 		try {
-			const res = await Axios.post(`http://localhost:3030/admin/orders/add`, {
+			const res = await Axios.post(`/admin/orders/add`, {
 				userId: localStorage.getItem('id'),
 				products: this.props.cartData,
 				itemTotal: this.props.itemsTotal,
