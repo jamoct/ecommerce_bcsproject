@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // =============== DATABASE CONNECTION =====================
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/ecommercebcsproject`,  { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || `mongodb://heroku_hcjfblpk:t9h6166a2t675uk69tm76albkg@ds317808.mlab.com:17808/heroku_hcjfblpk`,  { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 // =============== ROUTES ==============================
