@@ -27,8 +27,8 @@ export default class App extends Component {
     this.getProducts();
     this.getCartData();
     this.getCartProducts();
-    //let id = localStorage.getItem('id');
-    //if (id === undefined) return localStorage.clear();
+    /*let id = localStorage.getItem('id');
+    if (id === undefined) return localStorage.clear();*/
   }
 
   getProducts = async () => {

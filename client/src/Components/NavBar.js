@@ -50,7 +50,7 @@ class NavBar extends React.Component {
   render() {    
     return (
       <div>
-        {this.state.token === "undefined" || this.state.token === "" /*|| localStorage.length === 0 ||  || localStorage.email === "undefined" || localStorage.id === "undefined" || localStorage.id === ""*/ ? 
+        {this.state.token === "undefined" || this.state.token === "" /*|| localStorage.length === 0 || localStorage.email === "undefined" || localStorage.id === "undefined" || localStorage.id === ""*/ ? 
         <nav id="nav-bar">
           <h1> <NavLink exact to="/"> Sauce Stop </NavLink> </h1>
           <ul>

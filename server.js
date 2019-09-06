@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+require('dotenv').config();
 
 // =============== add body parser ===============
 const bodyParser= require('body-parser');
@@ -24,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // =============== DATABASE CONNECTION =====================
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/ecommercebcsproject`,  { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost/ecommercebcsproject`,  { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 
 // =============== ROUTES ==============================
