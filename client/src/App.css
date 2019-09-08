@@ -117,7 +117,7 @@ body {
   text-decoration: none;
 }
 
-#location a, #gallery a, #sauces a, #team a {
+#location a, #gallery a, #sauces a, #contact a {
   display: block;
   text-align: center;
   padding-bottom: 20px;
@@ -129,7 +129,7 @@ body {
   padding-top: 30px;
 }
 
-#location h2, #gallery h2, #sauces h2, #team h2 {
+#location h2, #gallery h2, #sauces h2, #contact h2 {
   padding-bottom: 10px;
   padding-top: 20px;
   text-align: center;
@@ -183,7 +183,15 @@ body {
   width: 90%;
 }
 
-/* Sauces */
+/* CONTACT US */
+
+.inquiry-form {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* SAUCES */
 
 #sauces {
   padding-top: 30px;
@@ -197,7 +205,6 @@ body {
 /* ADMIN CATALOG */
 
 #catalog {
-  margin: 50px auto;
   text-align: center;
   height: 100%;
 }
@@ -279,7 +286,7 @@ textarea {
   border-radius: 20px;  
   background: white;  
   padding: 30px;
-  height: 75%;
+  height: 80vh;
   z-index: 5;
 }
 
@@ -308,7 +315,6 @@ textarea {
 /* Footer */
 
 footer {
-  margin-top: 90px;
   background-color: #f0f0f0;
   padding: 20px;
   text-align: center;

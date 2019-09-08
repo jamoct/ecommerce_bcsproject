@@ -104,6 +104,11 @@ class MyOrders extends Component {
 		this.setState({showOrder:false, orderId: "", matched: []});
 	}
 
+	handleMyOrders = e => {
+		let userId = localStorage.getItem('id');
+		this.findOrderbyUser(userId);
+	}
+
 	render () {
 		
 		let {orders, matched, showOrder} = this.state;
@@ -239,12 +244,12 @@ class MyOrders extends Component {
 						marginTop: "20px"
 					}}>
 						<div></div>
+						<div onClick={this.handleMyOrders}>My Orders</div>
 						<div>
 							<form onSubmit={this.handleSubmit}>
 								<input placeholder="Search by Order ID" type="text" name="orderId" onChange={this.handleChange} value={this.state.orderId} style={{textAlign: "center"}}/> {this.state.message}
 							</form>
 						</div>
-						<div></div>
 						<div>
 							<form onSubmit={this.handleFindUser}>
 								<input placeholder="Search by User ID" type="text" name="userId" onChange={this.handleChange} value={this.state.userId} style={{textAlign: "center"}}/> {this.state.message}
