@@ -39,7 +39,7 @@ class UpdateProduct extends Component {
 			console.log(res);
 			this.setState({clicked: true});
 			this.props.getProducts();
-			alert(res.data.message);
+			alert('Product updated!');
 		}
 		catch(e){
 			console.log(e);
