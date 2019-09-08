@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import NavBar from './NavBar';
-import Home from './Home';
+import AdminPortal from './AdminPortal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
@@ -65,7 +65,7 @@ class LoginAdmin extends Component {
 		return(
 			<div>
 				<NavBar />
-				<Home />
+				<AdminPortal />
 				<div className="popup">
 					<div className="popup-inner"> 
 						<div style={{textAlign: "right"}}>

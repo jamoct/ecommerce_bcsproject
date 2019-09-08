@@ -37,8 +37,9 @@ class UpdateProduct extends Component {
 				newDesc: desc
 			})
 			console.log(res);
-			this.setState({clicked: true, message: res.data.message});
+			this.setState({clicked: true});
 			this.props.getProducts();
+			alert(res.data.message);
 		}
 		catch(e){
 			console.log(e);

@@ -10,9 +10,10 @@ import UpdateProduct from './Components/UpdateProduct';
 import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
 import OrderSummary from './Components/OrderSummary';
-import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import MyOrders from './Components/MyOrders';
+import AdminPortal from './Components/AdminPortal';
+import AdminPanel from './Components/AdminPanel';
 import Axios from 'axios';
 
 export default class App extends Component {
@@ -86,13 +87,11 @@ export default class App extends Component {
       <Router>
         <div>
           {this.removeUndefined()}
-          <NavBar 
-            isLoggedInAdmin={this.state.isLoggedInAdmin}
-            checkAdminLoggedIn={this.checkAdminLoggedIn}
-          />
-          <Route exact path="/" render={
+          <Route exact path="/" render= {
+            props => <AdminPortal {...props} isLoggedInAdmin={this.state.isLoggedInAdmin}/>
+          }/>
+          <Route exact path="/home" render={
             props => <Home {...props} products={this.state.products}/>
-            //() => {this.state.isLoggedInAdmin ? (<Redirect to="/admin/dashboard"/>) : (<Home/>)}
           }/>
           <Route path="/admin/login" component={LoginAdmin}/>
           <Route path="/admin/register" component={RegisterAdmin}/>
@@ -111,6 +110,7 @@ export default class App extends Component {
             props => <UpdateProduct {...props} getProducts={this.getProducts}/>
           }/>
           <Route path="/orders" component={MyOrders}/>
+          <Route path="/adminpanel" component={AdminPanel}/>
           <Route path="/cart" render={
             props => <Cart {...props} 
               cartProducts={this.state.cartProducts}

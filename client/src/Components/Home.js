@@ -1,56 +1,23 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import {withRouter} from 'react-router-dom';
-import NavBar from './NavBar';
+import {withRouter, NavLink} from 'react-router-dom';
 
 class Home extends Component {
 
 	state = {
-		message: '',
-		sku: '',
-		matched: []
+		message: ''
 	}
 
 	handleChange = e => {
 		this.setState({sku: e.target.value, matched: []});
 	}
 
-	handleSubmit = e => {
-		e.preventDefault();
-		let {sku} = this.state;
-		this.findProduct(sku);
-	}
-
-	findProduct = sku => {
-		Axios.get(`/admin/products/${sku}`)
-		.then((res) => {
-			console.log(res);
-			this.setState({matched: [res.data]});
-		})
-		.catch((error) => {
-			this.setState({message:'Please enter the SKU.'});
-		})
-	}
-
 	render () {
 		
-		let {matched} = this.state;
 		let display;
 
-		if (matched.length === 0 && this.props.products !== undefined) {
+		if (this.props.products !== undefined) {
 			display = this.props.products.map((obj, i) => {
-				return (
-					<div className="product-list" key={i}>
-						<img className="product-images" src={obj.photoURL} alt=""/><br />
-						<h3 key={i}>{obj.name}</h3>
-						Price: {obj.price} €<br />
-					</div>
-				)
-			})
-		}
-
-		if (matched.length >= 1) {
-			display = matched.map((obj, i) => {
 				return (
 					<div className="product-list" key={i}>
 						<img className="product-images" src={obj.photoURL} alt=""/><br />
@@ -63,7 +30,16 @@ class Home extends Component {
 
 		return (
 			<div>
-				<NavBar/>
+				<nav id="nav-bar">
+		          <h1> <NavLink exact to="/home"> Sauce Stop </NavLink> </h1>
+		          <ul>
+		            <li><a href="#header">Home</a></li>
+		            <li><a href="#location">Location</a></li>
+		            <li><a href="#gallery">Gallery</a></li>
+		            <li><a href="#sauces">Sauces</a></li>
+		            <li><a href="#contact">Contact Us</a></li>
+		          </ul>
+		        </nav>
 				<div>
 					<header id="header">
 						<img id="header-img" src="https://brooklyneagle.com/wp-content/uploads/2019/04/background-cayenne-chili-1091778-1024x683.jpg" alt=""/>

@@ -34,14 +34,14 @@ class AddProduct extends Component {
 			})
 			console.log(res);
 			this.setState({
-				message: res.data.message, 
 				name: '',
 				price: '',
 				photoURL: '',
 				quantity: '',
-				SKU: ''});
+				SKU: '',
+				desc: ''});
 			this.props.getProducts();
-			//if (res.data.ok) return setTimeout(()=> window.location.reload(), 1000);
+			alert(res.data.message);
 		}
 		catch(e){
 			console.log(e);
@@ -107,7 +107,9 @@ class AddProduct extends Component {
 						<button className="button">Add product</button>
 					</div>
 					</form>
-					<p>{this.state.message}</p>
+					<div style={{textAlign: "center"}}>
+						<p>{this.state.message}</p>
+					</div>
 				</div>
 			</div>
 		);

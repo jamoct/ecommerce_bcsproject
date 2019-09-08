@@ -72,6 +72,7 @@ export default withRouter(AdminDashboard);
 const style = {
 	content: {
 		maxWidth: "1000px",
-		margin: "40px auto 0"
+		margin: "40px auto 0",
+		height: "100%"
 	}
 };

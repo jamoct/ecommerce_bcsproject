@@ -49,18 +49,14 @@ class NavBar extends React.Component {
       <div>
         {localStorage.length === 0 || this.state.token === "undefined" || localStorage.email === "undefined" || localStorage.id === "undefined" || localStorage.id === "" ? 
         <nav id="nav-bar">
-          <h1> <NavLink exact to="/"> Sauce Stop </NavLink> </h1>
+          <h1> <NavLink exact to="/home"> Sauce Stop </NavLink> </h1>
           <ul>
-            <li><a href="#header">Home</a></li>
-            <li><a href="#location">Location</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#sauces">Sauces</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li><NavLink exact to="/home">Home</NavLink></li>
             <li> <NavLink exact to="/admin/login"><FontAwesomeIcon icon={faSignInAlt} size="lg" /> Admin Log in </NavLink> </li>
           </ul>
         </nav> :
         <nav id="nav-bar">
-          <h1> <NavLink exact to="/"> Sauce Stop </NavLink> </h1>
+          <h1> <NavLink exact to="/home"> Sauce Stop </NavLink> </h1>
           <ul>
             <li> <NavLink exact to="/admin/dashboard">Admin Dashboard </NavLink> </li>
             <li> <NavLink exact to="/cart" onClick={this.findOrder}><FontAwesomeIcon icon={faShoppingCart} size="lg" /> My Cart </NavLink> </li>

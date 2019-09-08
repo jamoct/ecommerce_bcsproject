@@ -4,7 +4,7 @@ const express = require('express'),
 
 // Orders Catalog
 router.get('/orders', controller.showAllOrders); // show all orders
-router.get('/admin/orders/:userid', controller.showOneOrder); // show one product by orderId
+router.get('/admin/orders/:userid', controller.showOneOrder); // show one product by userid
 router.get('/admin/orders/id/:id', controller.showOrderbyId); // show product by mongoose id
 router.post('/admin/orders/add', controller.addOrder); // add product
 router.post('/admin/orders/delete', controller.deleteOrder); // remove product

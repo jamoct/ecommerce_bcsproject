@@ -11,8 +11,10 @@ class MyOrders extends Component {
 		userId: "",
 		orders: [],
 		matched: [],
+		myOrders: [],
 		showOrder: false,
-		message: ''
+		message: '',
+		userOrders: []
 	}
 
 	componentDidMount () {
@@ -73,8 +75,7 @@ class MyOrders extends Component {
 		.then((res) => {
 			console.log(res);
 			if (res.data !== "") {
-				this.setState({matched: res.data});
-				this.setState({message: ''});
+				this.setState({matched: res.data, message: ''});
 			} else {
 				alert('Order not found!');
 			}
@@ -89,8 +90,7 @@ class MyOrders extends Component {
 		.then((res) => {
 			console.log(res);
 			if (res.data !== "") {
-				this.setState({matched: res.data});
-				this.setState({message: ''});
+				this.setState({userOrders: res.data, message: ''});
 			} else {
 				alert('Order not found!');
 			}
@@ -106,16 +106,69 @@ class MyOrders extends Component {
 
 	handleMyOrders = e => {
 		let userId = localStorage.getItem('id');
-		this.findOrderbyUser(userId);
+		Axios.get(`/admin/orders/${userId}`)
+		.then((res) => {
+			console.log(res);
+			if (res.data !== "") {
+				this.setState({myOrders: res.data, message: '', showOrder: false});
+			} else {
+				alert('Order not found!');
+			}
+		})
+		.catch((error) => {
+			console.log(error);
+		})
 	}
 
 	render () {
 		
-		let {orders, matched, showOrder} = this.state;
+		let {orders, matched, showOrder, myOrders, userOrders} = this.state;
 		let display;
 
-		if (matched.length === 0 || showOrder === false) {
+		if (matched.length === 0 || showOrder === false || myOrders.length >= 1) {
 			display = orders.map((obj, i) => {
+				return (
+					<div key={i}>
+						<div style={{
+							display: "grid",
+							gridTemplateColumns: "2fr 1fr 1fr 1fr 2fr 1fr"
+						}}>
+							<div>{obj._id}</div>
+							<div>{obj.paidStatus}</div>
+							<div>{obj.itemTotal} pcs.</div>
+							<div>{obj.paymentTotal.toFixed(2)}</div>
+							<div>{obj.currentStatus}</div>
+							<div onClick={() => this.findOrderbyClick(obj._id)} style={{cursor: "pointer"}}><strong>view info</strong></div>
+						</div>
+						<hr/><hr/>
+					</div>
+				)
+			})
+		}
+
+		if (myOrders.length >= 1) {
+			display = myOrders.map((obj, i) => {
+				return (
+					<div key={i}>
+						<div style={{
+							display: "grid",
+							gridTemplateColumns: "2fr 1fr 1fr 1fr 2fr 1fr"
+						}}>
+							<div>{obj._id}</div>
+							<div>{obj.paidStatus}</div>
+							<div>{obj.itemTotal} pcs.</div>
+							<div>{obj.paymentTotal.toFixed(2)}</div>
+							<div>{obj.currentStatus}</div>
+							<div onClick={() => this.findOrderbyClick(obj._id)} style={{cursor: "pointer"}}><strong>view info</strong></div>
+						</div>
+						<hr/><hr/>
+					</div>
+				)
+			})
+		}
+
+		if (userOrders.length >= 1) {
+			display = userOrders.map((obj, i) => {
 				return (
 					<div key={i}>
 						<div style={{
@@ -210,6 +263,7 @@ class MyOrders extends Component {
 											<li>Shipping Fee: {obj.shippingFee}</li>
 											<li>Shipping Status: {obj.shippedStatus}</li>
 											<li>Shipping Number: {obj.shippingNumber}</li>
+											<li>User ID: {obj.userId}</li>
 										</ul>
 									</div>
 									<div></div>
@@ -240,11 +294,11 @@ class MyOrders extends Component {
 					<hr/>
 					<div style={{
 						display: "grid",
-						gridTemplateColumns: "2fr 1fr 1fr 1fr 2fr",
+						gridTemplateColumns: "2fr 3fr 3fr 3fr 2fr",
 						marginTop: "20px"
 					}}>
 						<div></div>
-						<div onClick={this.handleMyOrders}>My Orders</div>
+						<div onClick={this.handleMyOrders} style={{cursor: "pointer", textDecoration: "underline"}}>My Orders</div>
 						<div>
 							<form onSubmit={this.handleSubmit}>
 								<input placeholder="Search by Order ID" type="text" name="orderId" onChange={this.handleChange} value={this.state.orderId} style={{textAlign: "center"}}/> {this.state.message}
@@ -284,7 +338,8 @@ export default withRouter(MyOrders);
 
 const style = {
 	content: {
-		maxWidth: "1000px",
-		margin: "40px auto"
+		width: "90%",
+		margin: "5% auto 25%",
+		height: "100%"
 	}
 };

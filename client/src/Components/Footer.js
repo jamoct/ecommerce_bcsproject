@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from "react-router-dom";
 
 export default class Footer extends Component {
 	render () {
@@ -6,7 +7,7 @@ export default class Footer extends Component {
 			<div>
 				<footer>
 					<ul>
-						<li><a href="#header">Home</a></li>
+						<li><NavLink exact to="/home">Home</NavLink></li>
 						<li><a href="#location">Location</a></li>
 						<li><a href="#gallery">Gallery</a></li>
 						<li><a href="#sauces">Sauces</a></li>
