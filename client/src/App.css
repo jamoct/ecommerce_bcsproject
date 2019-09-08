@@ -248,6 +248,18 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.button-buynow {
+  background-color: #cd4012;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 5px;
+  width: 35vh;
+  margin: 20px 10px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
 .li-product {
   padding: 5px;
   margin: 10px;

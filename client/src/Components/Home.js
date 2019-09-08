@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import {withRouter, NavLink} from 'react-router-dom';
 
 class Home extends Component {
@@ -8,8 +7,13 @@ class Home extends Component {
 		message: ''
 	}
 
-	handleChange = e => {
-		this.setState({sku: e.target.value, matched: []});
+	handleClick = async e => {
+		try {
+			this.props.history.push('/');
+		}
+		catch(e){
+			console.log(e);
+		}
 	}
 
 	render () {
@@ -23,6 +27,7 @@ class Home extends Component {
 						<img className="product-images" src={obj.photoURL} alt=""/><br />
 						<h3 key={i}>{obj.name}</h3>
 						Price: {obj.price} €<br />
+						<button className="button-buynow" onClick={this.handleClick}>BUY NOW</button>
 					</div>
 				)
 			})
@@ -71,7 +76,7 @@ class Home extends Component {
 							<img src="https://i0.wp.com/www.lataco.com/wp-content/uploads/Fuego-Hot-Sauce-Store-Photo-2-e1499288318138.jpg" alt=""/>
 						</div>
 						<div>
-							<img src="http://greenpointnews.com/wp-content/uploads/2015/07/img-2710.jpg" alt=""/>
+							<img src="https://i1.wp.com/www.lataco.com/wp-content/uploads/Fuego-Hot-Sauce-Store-Photo-5-e1499288289533.jpg" alt=""/>
 						</div>
 						</div>
 						<div className="maingallery">
