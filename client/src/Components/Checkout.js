@@ -10,7 +10,7 @@ const PAYMENT_SERVER_URL = "/payment";
 export default class Checkout extends Component {
 
 	state = {
-		message: 'Payment successful. You will now be redirected to the Order Summary page.',
+		message: '',
 		cartSubtotal: localStorage.getItem('CartTotal'),
 		shippingFee: localStorage.getItem('Shipping'),
 		paymentTotal: localStorage.getItem('PaymentTotal'),
